@@ -91,11 +91,33 @@ const perguntas = [
     },
 ];
 
+const quiz = document.querySelector('#quiz')
 const template = document.querySelector('template')
 
+
+for ( const item of perguntas){
+
+    
 //cloneNode(true) faz uma cópia de todos os elementos filhos dentro de template
 const quizItem = template.content.cloneNode(true)
 
-for ( const item of perguntas){
-    alert(item.pergunta)
+quizItem.querySelector('h3').textContent = item.pergunta
+
+    for (let resposta of item.respostas){
+        //copiando o conteudo dentro de dt
+        const dt = quizItem.querySelector('dl dt').cloneNode(true)
+        dt.querySelector('span').textContent = resposta
+
+        //adicionando as novas opcoes de resposta na tag dl
+        quizItem.querySelector('dl').appendChild(dt)
+    }
+
+    quizItem.querySelector('dl dt').remove()
+    
+//Adiciona diretamente os items da div HTML
+quiz.appendChild(quizItem)
+
 }
+
+
+
