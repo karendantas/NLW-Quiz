@@ -94,10 +94,17 @@ const perguntas = [
 const quiz = document.querySelector('#quiz')
 const template = document.querySelector('template')
 
+//Set() é uma estrutura que guarda objetos
+const respostasCorretas = new Set()
+
+const totalDePerguntas =  perguntas.length
+const totalAcertos = document.querySelector('#acertos span')
+
+totalAcertos.textContent = respostasCorretas.size + ' de ' + totalDePerguntas
+
 
 for ( const item of perguntas){
 
-    
 //cloneNode(true) faz uma cópia de todos os elementos filhos dentro de template
 const quizItem = template.content.cloneNode(true)
 
@@ -107,6 +114,24 @@ quizItem.querySelector('h3').textContent = item.pergunta
         //copiando o conteudo dentro de dt
         const dt = quizItem.querySelector('dl dt').cloneNode(true)
         dt.querySelector('span').textContent = resposta
+
+        //configurando o input
+        dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item))
+        dt.querySelector('input').value = item.respostas.indexOf(resposta)
+        dt.querySelector('input').onchange = (event) => {
+
+            const estaCorreta = event.target.value == item.correta
+            
+            respostasCorretas.delete(item)
+            if (estaCorreta){
+                respostasCorretas.add(item)
+
+            }  
+
+            totalAcertos.textContent = respostasCorretas.size + ' de ' + totalDePerguntas
+        }
+      
+
 
         //adicionando as novas opcoes de resposta na tag dl
         quizItem.querySelector('dl').appendChild(dt)
