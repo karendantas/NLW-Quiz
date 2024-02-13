@@ -1,14 +1,93 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+*, :root{
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
+
+    font-family: 'Inter', sans-serif;
+   
+}
+
+body{
+    background-color: #0f172a;
+
+    color:white;
+}
+
+main{
+    width: 800px;
+    margin: 5% auto;
+   
+}
+
+header{
+    display:flex;
+    flex-direction:row;
+
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+}
+
+
+
+#quiz{
+    padding-top: 40px;
 
 }
 
-#nome{
+.perguntas{
+    margin-top: 24px;
+    border: 1px solid #475569;
+    border-radius: 10px;
+}
+
+.perguntas h3{
+    padding: 24px 24px 10px 24px;
+}
+
+.perguntas dl{
+    padding: 0 30px 24px;
+
+    display: grid;
+    gap: 10px;
+}
+
+.perguntas dl dt{
+    font-size: 15px;
+    letter-spacing: 1;
+
     display:flex;
-    width: 400px;
-    height: 100vh;
-    margin: 0 auto;
-    justify-content:center;
+    items-center;
+    gap: 10px;
+
+}
+
+input{
+    all: unset;
+
+    border: 1px solid #94a3b8;
+    border-radius: 50%;
+
+    width: 16px;
+    heigth: 16px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+input:checked{
+    border: 1px solid #6b21a8;
+}
+
+input:checked:before{
+    content: "";
+    width: 10px;
+    height: 10px;
+
+    background-color: #6b21a8;
+    border-radius: 50%;
 }
